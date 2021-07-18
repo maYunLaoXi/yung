@@ -15,9 +15,10 @@ cli
   })
 // build
 cli
-  .command('dev [...pages]')
-  .action((a, b, c) => {
-    console.log('dev', { a, b, c })
+  .command('build [...roots]')
+  .option('-m --map', '[boolean] enable production sourceMap')
+  .action((roots, b, c) => {
+    console.log('build', { roots, b, c })
   })
 cli.help()
 cli.version('1.0.0')
