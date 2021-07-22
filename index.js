@@ -4,19 +4,15 @@ const url = require('url')
 
 const { log } = console
 // log(path.join('./', '../', 'abc', '../a'))
-const cac = path.resolve('lib', 'cac')
+const cac = path.resolve('lib', 'module')
 const exixtCac = fs.existsSync(cac)
 // log({ cac, exixtCac })
 const fileUrl = url.pathToFileURL(cac)
-function imp() {
-  return new Promise(resolve => {
-    log(fileUrl)
-    const file = (eval(`import(fileUrl + '.js')`).default)
-    setTimeout(() => {
-      log(file)
-      resolve(file)
-    }, 100);
-  })
+
+async function getFile() {
+  // const file = await eval(`import(fileUrl + '.mjs')`)
+  // log(file.default)
+  const file = require(cac)
+  log(file)
 }
-// imp()
-const file = (eval(`import(fileUrl + '.js')`))
+getFile()

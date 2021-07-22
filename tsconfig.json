@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "CommonJS",
+    "target": "ES2018",
     "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node"
-  },
-  "include": ["lib/cli.ts"]
+    "declaration": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true
+  }
 }
