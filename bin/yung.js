@@ -2,4 +2,4 @@
 
 // run npm link to use yung commond in terminal
 
-require('../lib/cac')
+require('../dist/cli')

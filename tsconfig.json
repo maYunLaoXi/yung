@@ -3,6 +3,10 @@
     "target": "ES2018",
     "strict": true,
     "declaration": true,
+    "module": "CommonJS",
+    "sourceMap": false,
+    "declarationDir": "types",
+    "moduleResolution": "node",
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "esModuleInterop": true
