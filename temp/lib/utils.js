@@ -1,4 +1,4 @@
-import path from "path/posix";
+import path from "path";
 import fs from 'fs';
 const { resolve, relative } = path;
 const cwd = process.cwd();

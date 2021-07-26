@@ -3,12 +3,13 @@
     "target": "ES2018",
     "strict": true,
     "declaration": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "sourceMap": false,
     "declarationDir": "types",
     "moduleResolution": "node",
     "noImplicitOverride": true,
     "noUnusedLocals": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "lib": ["ESNext"],
   }
 }

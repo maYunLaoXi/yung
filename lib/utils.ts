@@ -1,4 +1,4 @@
-import path from "path/posix"
+import path from "path"
 import fs from 'fs'
 
 export interface CliOption {
@@ -11,7 +11,7 @@ const { resolve, relative } = path
 const cwd = process.cwd()
 
 // 依懒路径
-const dependPath: string = resolve(cwd, 'node_modules/yung/temp')
+const dependPath: string = resolve(cwd, 'node_modules/vite')
 function pagePath(page: string | undefined): string {
   return page ? resolve(cwd, 'src', page) : resolve(cwd)
 }
