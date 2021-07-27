@@ -11,7 +11,7 @@ const { resolve, relative } = path
 const cwd = process.cwd()
 
 // 依懒路径
-const dependPath: string = resolve(cwd, 'node_modules/vite')
+const dependPath: string = resolve(cwd, 'node_modules')
 function pagePath(page: string | undefined): string {
   return page ? resolve(cwd, 'src', page) : resolve(cwd)
 }
@@ -56,7 +56,7 @@ export function rewriteConfig({
       }
     `
   }
-  const yungConfPath = resolve(dependPath, 'yung.congig.ts')
+  const yungConfPath = resolve(dependPath, 'yung.config.ts')
   fs.writeFileSync(yungConfPath, code)
   return yungConfPath
 }
