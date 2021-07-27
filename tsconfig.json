@@ -11,5 +11,6 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "lib": ["ESNext"],
-  }
+  },
+  "exclude": ["./temp", "./example"]
 }
