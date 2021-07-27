@@ -17,7 +17,9 @@ API不多，使用`yung dev`，和`yung build`即可愉快开发。
 npm install yung -g           # 全局
 npm install yung --save-dev   # 本地
 ```
+### 推荐参考或使用模板`yung-vue3-starter`
 
+see: [yung-vue3-starter](https://github.com/maYunLaoXi/yung-vue3-starter)
 ### 基本目录结构
 
 ```
