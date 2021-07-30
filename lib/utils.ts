@@ -1,17 +1,24 @@
 import path from "path"
 import fs from 'fs'
+import execa from 'execa'
 
 export interface CliOption {
   page: string,
   base?: string,
   publicDir?: string
 }
+export interface GLobalCliOptions {
+  '--'?: string[]
+  base?: string
+  root?: string
+  [propName: string]: any
+}
 
 const { resolve, relative } = path
 const cwd = process.cwd()
 
 // 依懒路径
-const dependPath: string = resolve(cwd, 'node_modules')
+const dependPath: string = resolve(cwd, 'node_modules/vite')
 function pagePath(page: string | undefined): string {
   return page ? resolve(cwd, 'src', page) : resolve(cwd)
 }
@@ -60,3 +67,38 @@ export function rewriteConfig({
   fs.writeFileSync(yungConfPath, code)
   return yungConfPath
 }
+
+/**
+ * 将对象转化为参数，并且去掉 -- base root的值
+ * @param obj GLobalCliOptions
+ * @returns 
+ */
+export function obj2Cmd(obj: GLobalCliOptions):string[] {
+  const cmd: string[] = []
+  const copy = { ...obj }
+  delete copy['--']
+  delete copy.base
+  delete copy.root
+  const keys = Object.keys(copy)
+  if (!keys.length) return []
+  for (let key in copy) {
+    let line = key.length === 1 ? '-' : '--'
+    if (typeof copy[key] === 'boolean') {
+      cmd.push(`${line}${key}`)
+    } else {
+      cmd.push(`${line}${key}`, `${copy[key]}`)
+    }
+  }
+  return cmd
+}
+
+/**
+ * 这样控制台才有颜色显示
+ * see https://kohpoll.github.io/blog/2016/09/15/spawn-and-terminal-color/
+ * see https://mlog.club/article/1599869
+ * */ 
+export const run = (bin: string, args: string[], opts = {}) =>
+  execa(bin, args, { stdio: 'inherit', ...opts })
+
+export const bin = (name: string) => 
+  path.resolve(process.cwd(), 'node_modules/.bin/' + name)
