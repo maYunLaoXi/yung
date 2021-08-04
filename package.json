@@ -1,6 +1,6 @@
 {
   "name": "yung",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "a vite mulit-page cli use vue3.0 and typescript",
   "main": "dist/cli.js",
   "bin": {
