@@ -46,6 +46,7 @@ export default defineComponent({
   },
   setup: () => {
     const count = ref(0)
+    console.log('env: ', import.meta.env)
     return { count }
   }
 })

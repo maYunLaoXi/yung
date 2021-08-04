@@ -6,8 +6,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import './test'
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  setup() {
+    console.log(import.meta.env)
+  }
 })
 </script>

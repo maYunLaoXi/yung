@@ -15,5 +15,8 @@ export default {
     nodeResolve(),
     typescript(),
     commonjs()
+  ],
+  external: [
+    ...Object.keys(require('./package.json').dependencies)
   ]
 }

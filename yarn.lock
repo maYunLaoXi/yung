@@ -188,6 +188,11 @@ deepmerge@^4.2.2:
   resolved "https://registry.npm.taobao.org/deepmerge/download/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
   integrity sha1-RNLqNnm49NT/ujPwPYZfwee/SVU=
 
+esbuild@^0.12.17:
+  version "0.12.17"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.17.tgz#5816f905c2905de0ebbc658860df7b5b48afbcd3"
+  integrity sha512-GshKJyVYUnlSXIZj/NheC2O0Kblh42CS7P1wJyTbbIHevTG4jYMS9NNw8EOd8dDWD0dzydYHS01MpZoUcQXB4g==
+
 estree-walker@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-1.0.1.tgz?cache=0&sync_timestamp=1611956983677&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Festree-walker%2Fdownload%2Festree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"

@@ -1,7 +1,11 @@
 import { cac } from 'cac'
-import { rewriteConfig, obj2Cmd, run, bin } from './utils'
+import { rewriteConfig, obj2Cmd } from './utils'
+import { loadConfigFromFile } from './config'
 import { runViteCmd } from './viteUtils'
+import deploy, { ServiceType } from './deploy'
 import chalk from 'chalk'
+import path from 'path'
+import fs from 'fs'
 
 const cli = cac('yung')
 export interface ServerOptions {
@@ -47,6 +51,7 @@ cli
       process.exit(1)
     }
   })
+  .allowUnknownOptions()
 
 // preview
 cli
@@ -63,12 +68,41 @@ cli
 
 // deploy
 cli
-  .command('deploy <env>')
-  .action(async (env, option) => {
-    console.log(process.argv)
-    console.log({ option, obj2Cmd: obj2Cmd(option) })
+  .command('deploy [...pages]')
+  .option('-s, --service <service>', '[string] deploy service info')
+  .action(async (pages, options) => {
+    try {
+      const { log } = console
+      const cwd = process.cwd()
+      const [page] = pages
+      // page没有传时默认为当前跟目录
+      const dir = page ? path.resolve(cwd, 'src', page, 'dist') : path.resolve(cwd, 'dist')
+      // 是否存在dist文件夹
+      const isExist = fs.existsSync(dir)
+      // log(dir, isExist)
+      if (!isExist) {
+        log(chalk.redBright(`
+          run yung build [page] before deploy
+          发布前请先进行构建生产代码
+        `))
+        process.exit(1)
+      }
+      const config = await loadConfigFromFile()
+      const { service } = config
+      const deployOption: ServiceType = service[options.service || 'lan']
+      if (!deployOption) {
+        log(chalk.redBright(`
+          service option is must 
+          use --service <service's name>
+        `))
+        process.exit(1)
+      }
+      await deploy(dir, page, deployOption)
+    } catch(e) {
+      console.log(chalk.red(`error when deploy:\n${e.stack}`))
+      process.exit(1)
+    }
   })
-  .allowUnknownOptions()
 
 cli.help()
 cli.version(require('../package.json').version)

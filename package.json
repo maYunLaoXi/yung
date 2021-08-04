@@ -1,6 +1,6 @@
 {
   "name": "yung",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "a vite mulit-page cli use vue3.0 and typescript",
   "main": "dist/cli.js",
   "bin": {
@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/maYunLaoXi/yung",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "esbuild": "^0.12.17"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.1",
     "@rollup/plugin-node-resolve": "^13.0.4",

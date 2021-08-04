@@ -11,7 +11,8 @@
 
 目前仅支持`typeScript`的vite配置文件
 
-> 注： 有关vite的配置请写在项目根目录的`vite.config.ts`文件内。
+> 注： ~~有关vite的配置请写在项目根目录的`vite.config.ts`文件内。~~
+> v0.2.0版开始改为使用项目本身的`vite`进行构建，接收`vite`原生命令行参数，但`root`和`base`会被替换。
 
 ## 使用
 
@@ -68,6 +69,52 @@ yung preview page             # 预览页面page
 ```
 
 > 注： 如需在构建生产前进行typescript的类型检查，可先执行`tsc --noEmit`或使用`vue-tsc`。see: [https://vitejs.bootcss.com/guide/features.html#npm-dependency-resolving-and-pre-bundling](https://vitejs.bootcss.com/guide/features.html#npm-dependency-resolving-and-pre-bundling)
+
+## 上传构建的代码到服务器
+
+yung支持将构建后的代码发布到服务器，假如你的代码各个页面都发布到同一基路径下，布页面刚好就是其子路径，即可使用命令`yung deploy page1 --servece prod`将page1下的dist上内上传到prod服务器下的page1目录下。
+
+在项目跟目录下新增`yung`配置文件`yung.config.ts`，配置文件目前仅支持使用ESM语法的.ts文件。
+
+```typescript
+// yung.config.ts
+export default function(mode) {
+  return {
+    service: {
+      lan: {
+      	// 必传,远程代码的跟地址
+        baseDir: '/home/liangyh/www',
+        // codeDir如果不传，会使用page的名称,不可设为 /
+        // codeDir: '/',
+        backupDir: '/home/liangyh/backup/yung',
+        ssh: {
+          host: '192.168.1.108',
+          port: 22,
+          username: 'liangyh',
+          // 或使用privateKey
+          // privateKey: fs.readFileSyec('./key')
+          password: 'lyh'
+        }
+      },
+      prod: {
+      	...
+      },
+      ...other service
+    }
+  }
+}
+```
+
+执行deploy前，请选执行build命令对项目进行构建。
+
+```shell
+yung build page1
+# 将page1下的dist上传到 lan
+yung deploy page1 --service lan
+```
+
+
+
 ## TODO
 
 * 构建生产代码时可以转入多个页面
