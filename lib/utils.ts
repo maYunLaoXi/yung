@@ -17,8 +17,13 @@ export interface GLobalCliOptions {
 const { resolve, relative } = path
 const cwd = process.cwd()
 
+// config dir
+const yungTemp = resolve(cwd, 'node_modules/yung-temp')
+
+fs.mkdirSync(yungTemp)
+
 // 依懒路径
-const dependPath: string = resolve(cwd, 'node_modules/vite')
+const dependPath: string = yungTemp
 function pagePath(page: string | undefined): string {
   return page ? resolve(cwd, 'src', page) : resolve(cwd)
 }
