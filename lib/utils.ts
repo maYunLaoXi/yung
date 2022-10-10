@@ -20,7 +20,7 @@ const cwd = process.cwd()
 // config dir
 const yungTemp = resolve(cwd, 'node_modules/yung-temp')
 
-fs.mkdirSync(yungTemp)
+fs.mkdirSync(yungTemp, { recursive: true })
 
 // 依懒路径
 const dependPath: string = yungTemp
