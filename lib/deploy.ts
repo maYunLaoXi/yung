@@ -3,7 +3,6 @@ import { Client as SshClient } from 'ssh2'
 // const { Client: SshClient } = require('ssh2')
 const scpClient = require('scp2')
 import chalk from 'chalk'
-import path from 'path'
 const { log } = console
 
 export type ServiceType = {
@@ -45,7 +44,7 @@ async function upCode(codeDir: string, page: string, sshInfo: ServiceType) {
     let sonPath = remoteCodeDir || page
     if (sonPath === '/') sonPath = './'
     if (sonPath[0] === '/') sonPath = sonPath.replace('/', '')
-    const upDir = path.resolve(baseDir, sonPath)
+    const upDir = `${baseDir}/${sonPath}`
 
     log(chalk.hex('#ff328c').bold(`from: ${codeDir}`))
     log(chalk.green(`to: ${upDir}`))
