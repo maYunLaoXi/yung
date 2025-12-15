@@ -1,6 +1,6 @@
 {
   "name": "yung",
-  "version": "0.3.0",
+  "version": "0.31.0",
   "description": "a vite mulit-page cli use vue3.0 and typescript",
   "main": "dist/cli.js",
   "bin": {
@@ -24,9 +24,8 @@
   "homepage": "https://github.com/maYunLaoXi/yung",
   "license": "ISC",
   "dependencies": {
-    "esbuild": "^0.25.5",
-    "scp2": "^0.5.0",
-    "ssh2": "^1.16.0"
+    "esbuild": "0.27.1",
+    "ssh2": "^1.17.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.1",
@@ -44,6 +43,6 @@
   },
   "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f",
   "engines": {
-    "node": ">=18.0.0 <19.0.0"
+    "node": ">=18.0.0"
   }
 }
