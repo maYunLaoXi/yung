@@ -14,6 +14,16 @@ export interface GLobalCliOptions {
   [propName: string]: any
 }
 
+export interface InlineConfig {
+  root: string
+  base: string
+  publicDir: string
+}
+
+export type UserConfigExport =
+  | Record<string, any>
+  | ((option: Record<string, any>, inlineConfig: InlineConfig) => Record<string, any> | Promise<Record<string, any>>)
+
 const { resolve, relative } = path
 const cwd = process.cwd()
 
@@ -27,6 +37,7 @@ const dependPath: string = yungTemp
 function pagePath(page: string | undefined): string {
   return page ? resolve(cwd, 'src', page) : resolve(cwd)
 }
+
 
 export function rewriteConfig({
   page,
@@ -52,7 +63,7 @@ export function rewriteConfig({
     code += `
       export default async function(option) {
         const config = await (typeof userConfig === 'function'
-        ? userConfig(option)
+        ? userConfig(option, inlineConfig)
         : userConfig)
   
         if(config.root && config.root === '${root}') {

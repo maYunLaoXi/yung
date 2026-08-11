@@ -10,6 +10,12 @@ export interface GLobalCliOptions {
     root?: string;
     [propName: string]: any;
 }
+export interface InlineConfig {
+    root: string;
+    base: string;
+    publicDir: string;
+}
+export type UserConfigExport = Record<string, any> | ((option: Record<string, any>, inlineConfig: InlineConfig) => Record<string, any> | Promise<Record<string, any>>);
 export declare function rewriteConfig({ page, base, publicDir }: CliOption): string;
 /**
  * 将对象转化为参数，并且去掉 -- base root的值

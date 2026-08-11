@@ -32,7 +32,7 @@ cli
       const yungConfPath = rewriteConfig({ page, base: options.base || './' })
       runViteCmd({ cmd: 'serve', configPath: yungConfPath, commands: obj2Cmd(options) })
     } catch (e) {
-      console.log(chalk.red(`error during dev server:\n${e.stack}`))
+      console.log(chalk.red(`error during dev server:\n${e instanceof Error ? e.stack : e}`))
       process.exit(1)
     }
   })
@@ -47,7 +47,7 @@ cli
       const yungConfPath = rewriteConfig({ page, base: options.base || './' })
       runViteCmd({ cmd: 'build', configPath: yungConfPath, commands: obj2Cmd(options) })
     } catch(e) {
-      console.log(chalk.red(`error during build:\n${e.stack}`))
+      console.log(chalk.red(`error during build:\n${e instanceof Error ? e.stack : e}`))
       process.exit(1)
     }
   })
@@ -61,7 +61,7 @@ cli
       const yungConfPath = rewriteConfig({ page, base: options.base || './' })
       runViteCmd({ cmd: 'preview', configPath: yungConfPath, commands: obj2Cmd(options) })
     } catch(e) {
-      console.log(chalk.red(`error when starting preview server:\n${e.stack}`))
+      console.log(chalk.red(`error when starting preview server:\n${e instanceof Error ? e.stack : e}`))
       process.exit(1)
     }
   })
@@ -99,7 +99,7 @@ cli
       }
       await deploy(dir, page, deployOption)
     } catch(e) {
-      console.log(chalk.red(`error when deploy:\n${e.stack}`))
+      console.log(chalk.red(`error when deploy:\n${e instanceof Error ? e.stack : e}`))
       process.exit(1)
     }
   })
